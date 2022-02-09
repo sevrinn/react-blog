@@ -6,6 +6,7 @@ const app = express()
 
 app.use(bodyParser.json())
 
+//ARTICLE
 app.get('/api/articles/:name', async (req, res) => {
 	try {
 		const articleName = req.params.name
@@ -25,6 +26,7 @@ app.get('/api/articles/:name', async (req, res) => {
 	}
 })
 
+//UPVOTES
 app.post('/api/articles/:name/upvote', async (req, res) => {
 	try {
 		const articleName = req.params.name
@@ -55,6 +57,8 @@ app.post('/api/articles/:name/upvote', async (req, res) => {
 		res.status(500).json({ message: 'Error connecting to db', error })
 	}
 })
+
+//COMMENTS
 app.post('/api/articles/:name/add-comment', (req, res) => {
 	const { username, text } = req.body
 	const articleName = req.params.name
