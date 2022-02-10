@@ -4,6 +4,7 @@ import articleContent from './article-content'
 import NotFoundPage from './NotFoundPage'
 import ArticlesList from '../components/ArticlesList'
 import CommentsList from '../components/CommentsList'
+import UpvotesSection from '../components/UpvotesSection'
 
 const ArticlePage = () => {
 	const { name } = useParams()
@@ -28,7 +29,11 @@ const ArticlePage = () => {
 	return (
 		<>
 			<h1 className='text-3xl mb-3'>{article.title}</h1>
-			<p>This post has been upvoted {articleInfo.upvotes} times</p>
+			<UpvotesSection
+				articleName={name}
+				upvotes={articleInfo.upvotes}
+				setArticleInfo={setArticleInfo}
+			/>
 			{article.content.map((paragraph, key) => (
 				<p key={key} className='mb-5'>
 					{paragraph}
